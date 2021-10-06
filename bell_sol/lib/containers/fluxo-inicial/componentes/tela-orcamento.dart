@@ -1,49 +1,47 @@
-import 'package:flutter/cupertino.dart';
+import 'package:bell_sol/containers/fluxo-inicial/componentes/tela-inicial.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
 import 'package:sign_button/constants.dart';
 import 'package:sign_button/create_button.dart';
 
-class TelaInicial extends StatefulWidget {
+class TelaOrcamento extends StatefulWidget {
   @override
-  _TelaInicialState createState() => _TelaInicialState();
+  _TelaOrcamentoState createState() => _TelaOrcamentoState();
 }
 
-class _TelaInicialState extends State<TelaInicial> {
+class _TelaOrcamentoState extends State<TelaOrcamento> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: _buildBody(context),
+    return Scaffold(
+      body: _buildBody(),
       appBar: _buildAppBar(),
       drawer: _buildDrawer(),
     );
   }
 
-  Widget _buildBody(context) {
-    return new Container();
+  Widget _buildBody(){
+
   }
 
-  Widget _buildAppBar() {
-    return new AppBar(
+  Widget _buildAppBar(){
+    return AppBar(
       backgroundColor: Colors.blue,
       automaticallyImplyLeading: true,
       actions: [
-        new Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            new Image.asset(
+            Image.asset(
               "Assets/LogoBellSolBG.png",
               height: 70,
               width: 70,
               alignment: Alignment.center,
             ),
-            new Container(
+            Container(
               width: 70,
             ),
-            new Container(
-              margin: const EdgeInsets.only(right: 8),
-              child: new RaisedButton(
+            Container(
+              margin: EdgeInsets.only(right: 8),
+              child: RaisedButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
@@ -52,10 +50,10 @@ class _TelaInicialState extends State<TelaInicial> {
                 elevation: 20,
                 color: Colors.yellow,
                 onPressed: () {},
-                child: new Container(
-                  child: new Text(
+                child: Container(
+                  child: Text(
                     "SOLICITAR ORÇAMENTO",
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.blue,
                         fontSize: 14),
@@ -69,17 +67,18 @@ class _TelaInicialState extends State<TelaInicial> {
     );
   }
 
-  Widget _buildDrawer() {
-    return new Drawer(
-      child: new Container(
+  Widget _buildDrawer(){
+
+    return Drawer(
+      child: Container(
         color: Colors.blue,
-        child: new Column(
+        child: Column(
           children: [
-            new DrawerHeader(
-              margin: const EdgeInsets.only(left: 4),
-              child: new Container(
+            DrawerHeader(
+              margin: EdgeInsets.only(left: 4),
+              child: Container(
                 alignment: Alignment.centerLeft,
-                child: new Image.asset(
+                child: Image.asset(
                   "Assets/LogoBellSolBG.png",
                   height: 120,
                   width: 120,
@@ -90,21 +89,22 @@ class _TelaInicialState extends State<TelaInicial> {
                 color: Colors.blue,
               ),
             ),
-            new RaisedButton(
+            RaisedButton(
               elevation: 4,
-              child: new ListTile(
+              child: ListTile(
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TelaInicial()));
                 },
-                leading: new Icon(
+                leading: Icon(
                   Icons.home,
                   color: Colors.yellow,
                   size: 20,
                 ),
                 hoverColor: Colors.yellow,
-                title: new Text(
+                title: Text(
                   'Início',
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.yellow,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
@@ -115,19 +115,19 @@ class _TelaInicialState extends State<TelaInicial> {
             Divider(
               height: 1,
             ),
-            new RaisedButton(
+            RaisedButton(
               elevation: 4,
               splashColor: Colors.yellow,
-              child: new ListTile(
+              child: ListTile(
                 onTap: () {},
-                leading: new Icon(
+                leading: Icon(
                   Icons.supervised_user_circle_rounded,
                   color: Colors.yellow,
                   size: 20,
                 ),
-                title: new Text(
+                title: Text(
                   'Quem Somos',
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.yellow,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
@@ -138,18 +138,18 @@ class _TelaInicialState extends State<TelaInicial> {
             Divider(
               height: 1,
             ),
-            new RaisedButton(
+            RaisedButton(
               elevation: 4,
-              child: new ListTile(
+              child: ListTile(
                 onTap: () {},
-                leading: new Icon(
+                leading: Icon(
                   Icons.design_services,
                   color: Colors.yellow,
                   size: 20,
                 ),
-                title: new Text(
+                title: Text(
                   'Serviços',
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.yellow,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
@@ -160,19 +160,19 @@ class _TelaInicialState extends State<TelaInicial> {
             Divider(
               height: 1,
             ),
-            new RaisedButton(
+            RaisedButton(
               elevation: 4,
-              child: new ListTile(
+              child: ListTile(
                 onTap: () {},
                 dense: true,
-                leading: new Icon(
+                leading: Icon(
                   Icons.store,
                   color: Colors.yellow,
                   size: 20,
                 ),
-                title: new Text(
+                title: Text(
                   'Nossa Loja',
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.yellow,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
@@ -182,19 +182,19 @@ class _TelaInicialState extends State<TelaInicial> {
             Divider(
               height: 1,
             ),
-            new RaisedButton(
+            RaisedButton(
               elevation: 4,
-              child: new ListTile(
+              child: ListTile(
                 onTap: () {},
                 dense: true,
-                leading: new Icon(
+                leading: Icon(
                   Icons.contact_mail,
                   color: Colors.yellow,
                   size: 18,
                 ),
-                title: new Text(
+                title: Text(
                   'Contato',
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.yellow,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
@@ -204,22 +204,21 @@ class _TelaInicialState extends State<TelaInicial> {
             Divider(
               height: 1,
             ),
-            new RaisedButton(
+            RaisedButton(
               elevation: 4,
-              child: new ListTile(
+              child: ListTile(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => TelaInicial()));
+                  Navigator.pop(context);
                 },
                 dense: true,
-                leading: new Icon(
+                leading: Icon(
                   Icons.add_box,
                   color: Colors.yellow,
                   size: 20,
                 ),
-                title: new Text(
+                title: Text(
                   'Solicitar Orçamento',
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.yellow,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
@@ -229,19 +228,19 @@ class _TelaInicialState extends State<TelaInicial> {
             Divider(
               height: 1,
             ),
-            new RaisedButton(
+            RaisedButton(
               elevation: 4,
-              child: new ListTile(
+              child: ListTile(
                 onTap: () {},
                 dense: true,
-                leading: new Icon(
+                leading: Icon(
                   Icons.call,
                   color: Colors.yellow,
                   size: 20,
                 ),
-                title: new Text(
+                title: Text(
                   "(91) 98806-9086",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.yellow,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
@@ -252,7 +251,7 @@ class _TelaInicialState extends State<TelaInicial> {
               color: Colors.transparent,
               height: 170,
             ),
-            new Container(
+            Container(
               height: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -260,14 +259,14 @@ class _TelaInicialState extends State<TelaInicial> {
                   color: Colors.white24,
                 ),
               ),
-              child: new SizedBox(
+              child: SizedBox(
                 width: 240,
                 height: 60,
-                child: new ListView(
+                child: ListView(
                   itemExtent: 60,
                   scrollDirection: Axis.horizontal,
                   children: [
-                    new SignInButton.mini(
+                    SignInButton.mini(
                       padding: 0,
                       buttonType: ButtonType.youtube,
                       onPressed: () {},
@@ -276,7 +275,7 @@ class _TelaInicialState extends State<TelaInicial> {
                       elevation: 0,
                       buttonSize: ButtonSize.small,
                     ),
-                    new SignInButton.mini(
+                    SignInButton.mini(
                       padding: 0,
                       buttonType: ButtonType.facebook,
                       onPressed: () {},
@@ -285,7 +284,7 @@ class _TelaInicialState extends State<TelaInicial> {
                       elevation: 0,
                       buttonSize: ButtonSize.small,
                     ),
-                    new SignInButton.mini(
+                    SignInButton.mini(
                       padding: 0,
                       buttonType: ButtonType.instagram,
                       onPressed: () {},
@@ -294,7 +293,7 @@ class _TelaInicialState extends State<TelaInicial> {
                       elevation: 0,
                       buttonSize: ButtonSize.small,
                     ),
-                    new SignInButton.mini(
+                    SignInButton.mini(
                       padding: 0,
                       buttonType: ButtonType.mail,
                       onPressed: () {},

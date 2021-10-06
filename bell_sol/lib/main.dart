@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
         [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
 
     return MaterialApp(
-        title: 'BellSol',
+        title:"BELLSOL",
         debugShowCheckedModeBanner: false,
-        home: new TelaInicialScreen(),
+        home: new TelaInicial(),
         routes: {
 
         });
