@@ -1,3 +1,4 @@
+import 'package:bell_sol/containers/fluxo-inicial/componentes/tela-orcamento.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -17,6 +18,45 @@ class _TelaInicialState extends State<TelaInicial> {
       body: _buildBody(context),
       appBar: _buildAppBar(),
       drawer: _buildDrawer(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.of(context).push(
+            PageRouteBuilder(
+                transitionDuration: Duration(milliseconds:250),
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    TelaOrcamento(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return new SlideTransition(
+                    position: Tween<Offset>(
+                        begin: const Offset(0,1), end: Offset.zero)
+                        .animate(animation),
+                    child: SlideTransition(
+                      position: Tween<Offset>(
+                        begin: Offset.zero,
+                        end: const Offset(0, 0),
+                      ).animate(animation),
+                      child: child,
+                    ),
+                  );
+                }),
+          );
+        },
+        label: Text(
+          "SOLICITAR ORÇAMENTO",
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 11),
+        ),
+        icon: Icon(
+          Icons.calculate,
+          color: Colors.white,
+          size: 18,
+        ),
+        backgroundColor: Colors.blue,
+        elevation: 100,
+        isExtended: true,
+        highlightElevation: 8,
+      ),
     );
   }
 
@@ -26,44 +66,20 @@ class _TelaInicialState extends State<TelaInicial> {
 
   Widget _buildAppBar() {
     return new AppBar(
+
+      title: Text(
+        "INÍCIO",
+        style: TextStyle(
+            color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+      ),
       backgroundColor: Colors.blue,
       automaticallyImplyLeading: true,
       actions: [
-        new Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            new Image.asset(
-              "Assets/LogoBellSolBG.png",
-              height: 70,
-              width: 70,
-              alignment: Alignment.center,
-            ),
-            new Container(
-              width: 70,
-            ),
-            new Container(
-              margin: const EdgeInsets.only(right: 8),
-              child: new RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                highlightColor: Colors.blue,
-                disabledColor: Colors.blue,
-                elevation: 20,
-                color: Colors.yellow,
-                onPressed: () {},
-                child: new Container(
-                  child: new Text(
-                    "SOLICITAR ORÇAMENTO",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue,
-                        fontSize: 14),
-                  ),
-                ),
-              ),
-            ),
-          ],
+        new Image.asset(
+          "Assets/LogoBellSolBG.png",
+          height: 90,
+          width: 90,
+          alignment: Alignment.center,
         ),
       ],
     );
@@ -71,6 +87,7 @@ class _TelaInicialState extends State<TelaInicial> {
 
   Widget _buildDrawer() {
     return new Drawer(
+      elevation:12,
       child: new Container(
         color: Colors.blue,
         child: new Column(
@@ -98,14 +115,14 @@ class _TelaInicialState extends State<TelaInicial> {
                 },
                 leading: new Icon(
                   Icons.home,
-                  color: Colors.yellow,
+                  color: Colors.white,
                   size: 20,
                 ),
                 hoverColor: Colors.yellow,
                 title: new Text(
                   'Início',
                   style: const TextStyle(
-                      color: Colors.yellow,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
                 ),
@@ -122,13 +139,13 @@ class _TelaInicialState extends State<TelaInicial> {
                 onTap: () {},
                 leading: new Icon(
                   Icons.supervised_user_circle_rounded,
-                  color: Colors.yellow,
+                  color: Colors.white,
                   size: 20,
                 ),
                 title: new Text(
                   'Quem Somos',
                   style: const TextStyle(
-                      color: Colors.yellow,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
                 ),
@@ -144,13 +161,13 @@ class _TelaInicialState extends State<TelaInicial> {
                 onTap: () {},
                 leading: new Icon(
                   Icons.design_services,
-                  color: Colors.yellow,
+                  color: Colors.white,
                   size: 20,
                 ),
                 title: new Text(
                   'Serviços',
                   style: const TextStyle(
-                      color: Colors.yellow,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
                 ),
@@ -167,13 +184,13 @@ class _TelaInicialState extends State<TelaInicial> {
                 dense: true,
                 leading: new Icon(
                   Icons.store,
-                  color: Colors.yellow,
+                  color: Colors.white,
                   size: 20,
                 ),
                 title: new Text(
                   'Nossa Loja',
                   style: const TextStyle(
-                      color: Colors.yellow,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
                 ),
@@ -189,13 +206,13 @@ class _TelaInicialState extends State<TelaInicial> {
                 dense: true,
                 leading: new Icon(
                   Icons.contact_mail,
-                  color: Colors.yellow,
+                  color: Colors.white,
                   size: 18,
                 ),
                 title: new Text(
                   'Contato',
                   style: const TextStyle(
-                      color: Colors.yellow,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
                 ),
@@ -208,19 +225,39 @@ class _TelaInicialState extends State<TelaInicial> {
               elevation: 4,
               child: new ListTile(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => TelaInicial()));
+                  Navigator.of(context).push(
+                    PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds:150),
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            TelaOrcamento(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          return new SlideTransition(
+                            position: Tween<Offset>(
+                                begin: const Offset(1,0), end: Offset.zero)
+                                .animate(animation),
+                            child: SlideTransition(
+                              position: Tween<Offset>(
+                                begin: Offset.zero,
+                                end: const Offset(0, 0),
+                              ).animate(animation),
+                              child: child,
+                            ),
+                          );
+                        }),
+                  );
+
                 },
                 dense: true,
                 leading: new Icon(
-                  Icons.add_box,
-                  color: Colors.yellow,
+                  Icons.calculate,
+                  color: Colors.white,
                   size: 20,
                 ),
                 title: new Text(
                   'Solicitar Orçamento',
                   style: const TextStyle(
-                      color: Colors.yellow,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
                 ),
@@ -236,13 +273,13 @@ class _TelaInicialState extends State<TelaInicial> {
                 dense: true,
                 leading: new Icon(
                   Icons.call,
-                  color: Colors.yellow,
+                  color: Colors.white,
                   size: 20,
                 ),
                 title: new Text(
                   "(91) 98806-9086",
                   style: const TextStyle(
-                      color: Colors.yellow,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
                 ),

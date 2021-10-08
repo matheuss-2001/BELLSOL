@@ -1,6 +1,7 @@
 import 'package:bell_sol/containers/fluxo-inicial/componentes/tela-inicial.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:z_components/components/utils/theme.dart';
 
 
 void main() {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title:"BELLSOL",
         debugShowCheckedModeBanner: false,
+        theme: CustomTheme.appTheme.copyWith(accentColor: Colors.blue),
         home: new TelaInicial(),
         routes: {
 

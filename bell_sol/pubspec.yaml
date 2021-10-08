@@ -27,6 +27,10 @@ dependencies:
 
   fluttericon: ^2.0.0
   sign_button: ^2.0.1
+  z_components: ^0.9.40+1
+  brasil_fields: 1.2.0
+  dropdownfield: 1.0.0
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
