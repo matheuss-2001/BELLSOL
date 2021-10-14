@@ -1,4 +1,5 @@
 import 'package:bell_sol/containers/fluxo-inicial/componentes/tela-inicial.dart';
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:dropdownfield/dropdownfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +15,14 @@ class TelaOrcamento extends StatefulWidget {
 }
 
 class _TelaOrcamentoState extends State<TelaOrcamento> {
+  TextEditingController nomeController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController telefoneController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    setState(() {});
+    return new Scaffold(
       body: _buildBody(),
       appBar: _buildAppBar(),
       drawer: _buildDrawer(),
@@ -24,15 +30,13 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
   }
 
   Widget _buildBody() {
-    FocusNode _nomeCompletoFocusNode = new FocusNode();
-    FocusNode _emailFocusNode = new FocusNode();
-    FocusNode _telefoneFocusNode = new FocusNode();
-
-    TextEditingController nomeController = TextEditingController();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController telefoneController = TextEditingController();
+    GlobalKey<FormState> formkey = GlobalKey<FormState>();
     var statesSelected = TextEditingController();
-    List<String> states = [
+    var tipoConexaoSelected = TextEditingController();
+    var tipoClienteSelected = TextEditingController();
+    var tipoConcessionariaSelected = TextEditingController();
+
+    List<String> listaEstados = [
       "Acre(AC)",
       "Alagoas(AL)",
       "Amapá(AP)",
@@ -61,13 +65,34 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
       "Sergipe(SE)",
       "Tocantins(TO)",
     ];
-    return SingleChildScrollView(
-      child: Padding(
+
+    List<String> ListaTipoIntalacao = [
+      "Monofásico",
+      "Bifásico",
+      "Trifásico",
+    ];
+    List<String> ListaTipoCliente = [
+      "Residencial",
+      "Comercial",
+    ];
+    List<String> listaTipoConcessionaria = [
+      "UHENPAL",
+      "RGE",
+      "MUX-Energia",
+      "HIDROPAN",
+      "ELETROCAR",
+      "DEMEI",
+      "CEEE-D",
+      "AES-SUL",
+      "ENEL",
+    ];
+    return new SingleChildScrollView(
+      child: new Padding(
         padding: const EdgeInsets.all(8),
-        child: Column(
+        child: new Column(
           children: [
             new Container(
-              margin: const EdgeInsets.only(bottom: 16),
+              margin: const EdgeInsets.only(bottom: 16, top: 8),
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
@@ -76,71 +101,65 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                 zTipos: ZTipoTextos.isTitulo,
               ),
             ),
-            TextFormField(
+            new TextFormField(
               cursorColor: Colors.blue,
-              autofocus: true,
-              focusNode: _nomeCompletoFocusNode,
               controller: nomeController,
               decoration: InputDecoration(
                 hintStyle: TextStyle(
                   color: Colors.black,
                   fontSize: 14,
                 ),
-                hintText: "João Carlos",
+                hintText: "Insira seu Nome",
                 labelText: " Nome: ",
                 border: OutlineInputBorder(),
                 labelStyle: TextStyle(fontSize: 18),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 contentPadding: EdgeInsets.all(16),
-                isCollapsed: false,
                 enabled: true,
-                isDense: true,
                 errorMaxLines: 100,
                 filled: true,
                 fillColor: Colors.white,
               ),
             ),
-            SizedBox(
+            new SizedBox(
               height: 8,
             ),
-            TextFormField(
-              inputFormatters: [],
-              focusNode: _emailFocusNode,
+            new TextFormField(
               controller: emailController,
               decoration: InputDecoration(
                 hintStyle: TextStyle(
                   color: Colors.black,
                   fontSize: 14,
                 ),
-                hintText: "JoãoCarlos@gmail.com",
+                hintText: "Insira seu Email",
                 labelText: " E-mail: ",
                 border: OutlineInputBorder(),
                 labelStyle: TextStyle(fontSize: 18),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 contentPadding: EdgeInsets.all(16),
-                isCollapsed: false,
                 enabled: true,
-                isDense: true,
                 errorMaxLines: 100,
                 filled: true,
                 fillColor: Colors.white,
               ),
             ),
-            SizedBox(
+            new SizedBox(
               height: 8,
             ),
-            TextFormField(
-              focusNode: _telefoneFocusNode,
-              inputFormatters: [],
+            new TextFormField(
               keyboardType: TextInputType.number,
-              controller: telefoneController,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                TelefoneInputFormatter()
+              ],
+              //keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 hintStyle: TextStyle(
                   color: Colors.black,
                   fontSize: 14,
                 ),
 
-                hintText: "000 00000-0000",
+                hintText: "Insira seu Telefone",
                 labelText: " Telefone: ",
 
                 border: OutlineInputBorder(),
@@ -161,18 +180,45 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                 color: Colors.blue,
               ),
               child: new ZText(
-                tituloText:
-                    "DADOS PARA O DIMENSIONAMENTO DO SEU GERADOR SOLAR:",
+                tituloText: "LOCALIZAÇÃO E DESEMPENHO",
                 zTipos: ZTipoTextos.isTitulo,
               ),
             ),
-            Container(
+            new TextFormField(
+              cursorColor: Colors.blue,
+              decoration: InputDecoration(
+                hintStyle: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14,
+                ),
+                hintText: "Insira sua Cidade",
+                labelText: " Cidade: ",
+                border: OutlineInputBorder(),
+                labelStyle: TextStyle(fontSize: 18),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                contentPadding: EdgeInsets.all(16),
+                isCollapsed: false,
+                enabled: true,
+                isDense: true,
+                errorMaxLines: 100,
+                filled: true,
+                fillColor: Colors.white,
+              ),
+            ),
+            new SizedBox(
+              height: 8,
+            ),
+            new Container(
               color: Colors.white,
               child: new DropDownField(
-                icon: Icon(
-                  Icons.location_on_outlined,
-                  color: Colors.blue,
-                  size: 18,
+                icon: new IconButton(
+                  padding: const EdgeInsets.only(left: 16),
+                  alignment: Alignment.center,
+                  icon: new Icon(
+                    Icons.location_on_outlined,
+                    color: Colors.blue,
+                    size: 18,
+                  ),
                 ),
                 strict: true,
                 controller: statesSelected,
@@ -184,12 +230,227 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                   fontWeight: FontWeight.bold,
                 ),
                 itemsVisibleInDropdown: 8,
-                items: states,
+                items: listaEstados,
                 onValueChanged: (value) {
                   setState(() {
                     statesSelected = value;
                   });
                 },
+              ),
+            ),
+            new SizedBox(
+              height: 8,
+            ),
+            new Container(
+              color: Colors.white,
+              child: new DropDownField(
+                icon: new IconButton(
+                  padding: const EdgeInsets.only(left: 16),
+                  alignment: Alignment.center,
+                  onPressed: () {},
+                  icon: new Icon(
+                    Icons.help_outline_rounded,
+                    color: Colors.blue,
+                    size: 18,
+                  ),
+                ),
+                strict: true,
+                controller: tipoConexaoSelected,
+                enabled: true,
+                labelText: "Tipo de Instalação:",
+                labelStyle: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                itemsVisibleInDropdown: 8,
+                items: ListaTipoIntalacao,
+                onValueChanged: (value) {
+                  setState(() {
+                    tipoConexaoSelected = value;
+                  });
+                },
+              ),
+            ),
+            new SizedBox(
+              height: 8,
+            ),
+            new Container(
+              color: Colors.white,
+              child: new DropDownField(
+                icon: new IconButton(
+                  padding: const EdgeInsets.only(left: 16),
+                  alignment: Alignment.center,
+                  onPressed: () {},
+                  icon: new Icon(
+                    Icons.help_outline_rounded,
+                    color: Colors.blue,
+                    size: 18,
+                  ),
+                ),
+                strict: true,
+                controller: tipoClienteSelected,
+                enabled: true,
+                labelText: "Tipo de Cliente:",
+                labelStyle: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                itemsVisibleInDropdown: 8,
+                items: ListaTipoCliente,
+                onValueChanged: (value) {
+                  setState(() {
+                    tipoClienteSelected = value;
+                  });
+                },
+              ),
+            ),
+            new SizedBox(
+              height: 8,
+            ),
+            new Container(
+              color: Colors.white,
+              child: new DropDownField(
+                icon: new IconButton(
+                  padding: const EdgeInsets.only(left: 16),
+                  alignment: Alignment.center,
+                  onPressed: () {},
+                  icon: new Icon(
+                    Icons.help_outline_rounded,
+                    color: Colors.blue,
+                    size: 18,
+                  ),
+                ),
+                strict: true,
+                controller: tipoConcessionariaSelected,
+                //hintText: "concessionária",
+                enabled: true,
+                labelText: "Concessionária:",
+                labelStyle: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                itemsVisibleInDropdown: 8,
+                items: listaTipoConcessionaria,
+                onValueChanged: (value) {
+                  setState(() {
+                    tipoConcessionariaSelected = value;
+                  });
+                },
+              ),
+            ),
+            new SizedBox(
+              height: 8,
+            ),
+            new TextFormField(
+              keyboardType: TextInputType.number,
+              cursorColor: Colors.blue,
+              decoration: InputDecoration(
+                hintStyle: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14,
+                ),
+                //hintText: "Insira sua Cidade",
+                labelText: "Consumo médio mensal (kWh) ",
+                border: OutlineInputBorder(),
+                labelStyle: TextStyle(fontSize: 18),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                contentPadding: EdgeInsets.all(16),
+                isCollapsed: false,
+                enabled: true,
+                isDense: true,
+                errorMaxLines: 100,
+                filled: true,
+                fillColor: Colors.white,
+              ),
+            ),
+            new SizedBox(
+              height: 8,
+            ),
+            new TextFormField(
+              keyboardType: TextInputType.number,
+              cursorColor: Colors.blue,
+              decoration: InputDecoration(
+                hintStyle: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14,
+                ),
+                //hintText: "Insira sua Cidade",
+                labelText: "Tarifa (RS)",
+                border: OutlineInputBorder(),
+                labelStyle: TextStyle(fontSize: 18),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                contentPadding: const EdgeInsets.all(16),
+                isCollapsed: false,
+                enabled: true,
+                isDense: true,
+                errorMaxLines: 100,
+                filled: true,
+                fillColor: Colors.white,
+              ),
+            ),
+            new SizedBox(
+              height: 8,
+            ),
+            new TextFormField(
+              keyboardType: TextInputType.number,
+              cursorColor: Colors.blue,
+              decoration: InputDecoration(
+                hintStyle: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14,
+                ),
+                //hintText: "Insira sua Cidade",
+                labelText: "Taxa de Desempenho (%)",
+                border: OutlineInputBorder(),
+                labelStyle: TextStyle(fontSize: 18),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                contentPadding: EdgeInsets.all(16),
+                isCollapsed: false,
+                enabled: true,
+                isDense: true,
+                errorMaxLines: 100,
+                filled: true,
+                fillColor: Colors.white,
+              ),
+            ),
+            new SizedBox(
+              height: 8,
+            ),
+            _exibirBotao(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _exibirBotao() {
+    return new Material(
+      elevation: 4,
+      child: new Container(
+        color: Colors.white,
+        height: MediaQuery.of(context).size.height / 8,
+        child: new Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            new RaisedButton(
+              color: Colors.blue,
+              onPressed: () {},
+              shape: new RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30)),
+              padding: const EdgeInsets.only(right: 8, left: 8),
+              child: new Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  new Container(
+                    padding: const EdgeInsets.only(right: 16, left: 16),
+                    child: new Text(
+                      "PROSSEGUIR",
+                      style: Theme.of(context).textTheme.button.copyWith(
+                            color: Color(0xFFFFFFFF),
+                          ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -199,7 +460,7 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
   }
 
   Widget _buildAppBar() {
-    return AppBar(
+    return new AppBar(
       title: Text(
         "ORÇAMENTO",
         style: TextStyle(
@@ -219,14 +480,14 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
   }
 
   Widget _buildDrawer() {
-    return Drawer(
-      child: Container(
+    return new Drawer(
+      child: new Container(
         color: Colors.blue,
-        child: Column(
+        child: new Column(
           children: [
-            DrawerHeader(
-              margin: EdgeInsets.only(left: 4),
-              child: Container(
+            new DrawerHeader(
+              margin: const EdgeInsets.only(left: 4),
+              child: new Container(
                 alignment: Alignment.centerLeft,
                 child: Image.asset(
                   "Assets/LogoBellSolBG.png",
@@ -235,13 +496,13 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                   alignment: Alignment.center,
                 ),
               ),
-              decoration: BoxDecoration(
+              decoration: new BoxDecoration(
                 color: Colors.blue,
               ),
             ),
-            RaisedButton(
+            new RaisedButton(
               elevation: 4,
-              child: ListTile(
+              child: new ListTile(
                 onTap: () {
                   Navigator.of(context).push(
                     PageRouteBuilder(
@@ -265,15 +526,15 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                         }),
                   );
                 },
-                leading: Icon(
+                leading: new Icon(
                   Icons.home,
                   color: Colors.white,
                   size: 20,
                 ),
                 hoverColor: Colors.yellow,
-                title: Text(
+                title: new Text(
                   'Início',
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
@@ -281,20 +542,20 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                 dense: true,
               ),
             ),
-            Divider(
+            new Divider(
               height: 1,
             ),
-            RaisedButton(
+            new RaisedButton(
               elevation: 4,
               splashColor: Colors.yellow,
-              child: ListTile(
+              child: new ListTile(
                 onTap: () {},
-                leading: Icon(
+                leading: new Icon(
                   Icons.supervised_user_circle_rounded,
                   color: Colors.white,
                   size: 20,
                 ),
-                title: Text(
+                title: new Text(
                   'Quem Somos',
                   style: TextStyle(
                       color: Colors.white,
@@ -304,19 +565,19 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                 dense: true,
               ),
             ),
-            Divider(
+            new Divider(
               height: 1,
             ),
-            RaisedButton(
+            new RaisedButton(
               elevation: 4,
-              child: ListTile(
+              child: new ListTile(
                 onTap: () {},
-                leading: Icon(
+                leading: new Icon(
                   Icons.design_services,
                   color: Colors.white,
                   size: 20,
                 ),
-                title: Text(
+                title: new Text(
                   'Serviços',
                   style: TextStyle(
                       color: Colors.white,
@@ -326,20 +587,20 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                 dense: true,
               ),
             ),
-            Divider(
+            new Divider(
               height: 1,
             ),
-            RaisedButton(
+            new RaisedButton(
               elevation: 4,
-              child: ListTile(
+              child: new ListTile(
                 onTap: () {},
                 dense: true,
-                leading: Icon(
+                leading: new Icon(
                   Icons.store,
                   color: Colors.white,
                   size: 20,
                 ),
-                title: Text(
+                title: new Text(
                   'Nossa Loja',
                   style: TextStyle(
                       color: Colors.white,
@@ -348,66 +609,66 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                 ),
               ),
             ),
-            Divider(
+            new Divider(
               height: 1,
             ),
-            RaisedButton(
+            new RaisedButton(
               elevation: 4,
-              child: ListTile(
+              child: new ListTile(
                 onTap: () {},
                 dense: true,
-                leading: Icon(
+                leading: new Icon(
                   Icons.contact_mail,
                   color: Colors.white,
                   size: 18,
                 ),
-                title: Text(
+                title: new Text(
                   'Contato',
-                  style: TextStyle(
+                  style: new TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
                 ),
               ),
             ),
-            Divider(
+            new Divider(
               height: 1,
             ),
-            RaisedButton(
+            new RaisedButton(
               elevation: 4,
-              child: ListTile(
+              child: new ListTile(
                 onTap: () {
                   Navigator.pop(context);
                 },
                 dense: true,
-                leading: Icon(
+                leading: new Icon(
                   Icons.add_box,
                   color: Colors.white,
                   size: 20,
                 ),
-                title: Text(
+                title: new Text(
                   'Solicitar Orçamento',
-                  style: TextStyle(
+                  style: new TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
                 ),
               ),
             ),
-            Divider(
+            new Divider(
               height: 1,
             ),
-            RaisedButton(
+            new RaisedButton(
               elevation: 4,
-              child: ListTile(
+              child: new ListTile(
                 onTap: () {},
                 dense: true,
-                leading: Icon(
+                leading: new Icon(
                   Icons.call,
                   color: Colors.white,
                   size: 20,
                 ),
-                title: Text(
+                title: new Text(
                   "(91) 98806-9086",
                   style: TextStyle(
                       color: Colors.white,
@@ -420,7 +681,7 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
               color: Colors.transparent,
               height: 170,
             ),
-            Container(
+            new Container(
               height: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -428,14 +689,14 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                   color: Colors.white24,
                 ),
               ),
-              child: SizedBox(
+              child: new SizedBox(
                 width: 240,
                 height: 60,
-                child: ListView(
+                child: new ListView(
                   itemExtent: 60,
                   scrollDirection: Axis.horizontal,
                   children: [
-                    SignInButton.mini(
+                    new SignInButton.mini(
                       padding: 0,
                       buttonType: ButtonType.youtube,
                       onPressed: () {},
@@ -444,7 +705,7 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                       elevation: 0,
                       buttonSize: ButtonSize.small,
                     ),
-                    SignInButton.mini(
+                    new SignInButton.mini(
                       padding: 0,
                       buttonType: ButtonType.facebook,
                       onPressed: () {},
@@ -453,7 +714,7 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                       elevation: 0,
                       buttonSize: ButtonSize.small,
                     ),
-                    SignInButton.mini(
+                    new SignInButton.mini(
                       padding: 0,
                       buttonType: ButtonType.instagram,
                       onPressed: () {},
@@ -462,7 +723,7 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                       elevation: 0,
                       buttonSize: ButtonSize.small,
                     ),
-                    SignInButton.mini(
+                    new SignInButton.mini(
                       padding: 0,
                       buttonType: ButtonType.mail,
                       onPressed: () {},

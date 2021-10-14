@@ -27,9 +27,12 @@ dependencies:
 
   fluttericon: ^2.0.0
   sign_button: ^2.0.1
-  z_components: ^0.9.40+1
+  z_components: ^0.9.39
   brasil_fields: 1.2.0
   dropdownfield: 1.0.0
+  validadores: ^1.0.5
+  carousel_slider: ^4.0.0
+  smooth_page_indicator: ^1.0.0+2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -57,7 +60,9 @@ flutter:
       - Assets/LogoBellSolBG.png
       - Assets/carroEletrico.jpg
       - Assets/painelSolar.jpg
-
+      - Assets/bateria.png
+      - Assets/controlador.png
+      - Assets/SeloVerde.png
 
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
