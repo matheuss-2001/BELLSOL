@@ -23,12 +23,12 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
   Widget build(BuildContext context) {
     setState(() {});
     return new Scaffold(
-      body: _buildBody(),
+      //body: _buildBody(),
       appBar: _buildAppBar(),
       drawer: _buildDrawer(),
     );
   }
-
+  /*
   Widget _buildBody() {
     GlobalKey<FormState> formkey = GlobalKey<FormState>();
     var statesSelected = TextEditingController();
@@ -119,6 +119,7 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                 errorMaxLines: 100,
                 filled: true,
                 fillColor: Colors.white,
+
               ),
             ),
             new SizedBox(
@@ -422,6 +423,10 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
       ),
     );
   }
+  ?
+
+
+   */
 
   Widget _exibirBotao() {
     return new Material(
@@ -446,8 +451,8 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                     child: new Text(
                       "PROSSEGUIR",
                       style: Theme.of(context).textTheme.button.copyWith(
-                            color: Color(0xFFFFFFFF),
-                          ),
+                        color: Color(0xFFFFFFFF),
+                      ),
                     ),
                   ),
                 ],
@@ -513,7 +518,7 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                             (context, animation, secondaryAnimation, child) {
                           return new SlideTransition(
                             position: Tween<Offset>(
-                                    begin: const Offset(1, 0), end: Offset.zero)
+                                begin: const Offset(1, 0), end: Offset.zero)
                                 .animate(animation),
                             child: SlideTransition(
                               position: Tween<Offset>(
