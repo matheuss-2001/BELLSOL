@@ -63,6 +63,8 @@ flutter:
       - Assets/bateria.png
       - Assets/controlador.png
       - Assets/SeloVerde.png
+      - Assets/LOGOBELLSOL.png
+      - Assets/CopyRight.png
 
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -11,6 +11,7 @@ import 'package:flutter/rendering.dart';
 import 'package:sign_button/constants.dart';
 import 'package:sign_button/create_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:z_components/components/z-perfil-item.dart';
 
 class TelaInicial extends StatefulWidget {
   @override
@@ -69,7 +70,7 @@ class _TelaInicialState extends State<TelaInicial> {
     );
   }
 
-  Widget _buildBody(context) {
+  Widget _buildBody(BuildContext context) {
     return new SingleChildScrollView(
       child: new Padding(
         padding: const EdgeInsets.all(8),
@@ -100,7 +101,7 @@ class _TelaInicialState extends State<TelaInicial> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               new Container(
-                margin: EdgeInsets.only(top: 8,bottom: 8),
+                margin: EdgeInsets.only(top: 8, bottom: 8),
                 child: Text(
                   "NOSSOS PRODUTOS",
                   style: TextStyle(
@@ -118,7 +119,7 @@ class _TelaInicialState extends State<TelaInicial> {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white24,
-                    border:Border.all(color:Colors.white60,width:1),
+                    border: Border.all(color: Colors.white60, width: 1),
                   ),
                   child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -128,40 +129,29 @@ class _TelaInicialState extends State<TelaInicial> {
                         height: 100,
                       ),
                       Text(
-                        "Gerador on grid",style: TextStyle(fontWeight: FontWeight.bold),
+                        "Gerador on grid",
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Container(
                         width: 90,
-                        margin: EdgeInsets.only(
-                            top: 4
-                        ),
+                        margin: EdgeInsets.only(top: 4),
                         child: Text(
-                          "Caregamento Rápido ",textAlign: TextAlign.center,
+                          "Caregamento Rápido ",
+                          textAlign: TextAlign.center,
                         ),
                       ),
-
                       Container(
-
-                        margin:EdgeInsets.only(
-                            left: 10,
-                            right:10
-                        ),
-
-                        child: new  RaisedButton(
+                        margin: EdgeInsets.only(left: 10, right: 10),
+                        child: new RaisedButton(
                           padding: EdgeInsets.all(8),
                           shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius
-                                .all(
-                                const Radius.circular(
-                                    15)),
+                            borderRadius:
+                                new BorderRadius.all(const Radius.circular(15)),
                           ),
                           color: Colors.blue,
                           elevation: 10,
-                          onPressed: (){},
-                          child: Text(
-                              "Veja mais"
-                          ),
-
+                          onPressed: () {},
+                          child: Text("Veja mais"),
                         ),
                       ),
                     ],
@@ -172,52 +162,41 @@ class _TelaInicialState extends State<TelaInicial> {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white24,
-                    border:Border.all(color:Colors.white60,width:1),
+                    border: Border.all(color: Colors.white60, width: 1),
                   ),
                   child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(
-                        "Assets/bateria.png",
+                        "Assets/controlador.png",
                         height: 100,
                       ),
                       Text(
-                        "Gerador on grid",style: TextStyle(fontWeight: FontWeight.bold),
+                        "Controlador on grid",
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Container(
                         width: 90,
-                        margin: EdgeInsets.only(
-                          top: 4
-                        ),
+                        margin: EdgeInsets.only(top: 4),
                         child: Text(
-                          "Caregamento Rápido ",textAlign: TextAlign.center,
+                          "Caregamento Rápido ",
+                          textAlign: TextAlign.center,
                         ),
                       ),
-
-                     Container(
-
-                       margin:EdgeInsets.only(
-                         left: 10,
-                         right:10
-                       ),
-
-                       child: new  RaisedButton(
-                         padding: EdgeInsets.all(8),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius
-                                  .all(
-                                  const Radius.circular(
-                                      15)),
-                            ),
-                            color: Colors.blue,
-                            elevation: 10,
-                           onPressed: (){},
-                          child: Text(
-                            "Veja mais"
+                      Container(
+                        margin: EdgeInsets.only(left: 10, right: 10),
+                        child: new RaisedButton(
+                          padding: EdgeInsets.all(8),
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                new BorderRadius.all(const Radius.circular(15)),
                           ),
-
-                            ),
-                     ),
+                          color: Colors.blue,
+                          elevation: 10,
+                          onPressed: () {},
+                          child: Text("Veja mais"),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -226,7 +205,7 @@ class _TelaInicialState extends State<TelaInicial> {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white24,
-                    border:Border.all(color:Colors.white60,width:1),
+                    border: Border.all(color: Colors.white60, width: 1),
                   ),
                   child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -236,40 +215,29 @@ class _TelaInicialState extends State<TelaInicial> {
                         height: 100,
                       ),
                       Text(
-                        "Gerador on grid",style: TextStyle(fontWeight: FontWeight.bold),
+                        "Gerador on grid",
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Container(
                         width: 90,
-                        margin: EdgeInsets.only(
-                            top: 4
-                        ),
+                        margin: EdgeInsets.only(top: 4),
                         child: Text(
-                          "Caregamento Rápido ",textAlign: TextAlign.center,
+                          "Caregamento Rápido ",
+                          textAlign: TextAlign.center,
                         ),
                       ),
-
                       Container(
-
-                        margin:EdgeInsets.only(
-                            left: 10,
-                            right:10
-                        ),
-
-                        child: new  RaisedButton(
+                        margin: EdgeInsets.only(left: 10, right: 10),
+                        child: new RaisedButton(
                           padding: EdgeInsets.all(8),
                           shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius
-                                .all(
-                                const Radius.circular(
-                                    15)),
+                            borderRadius:
+                                new BorderRadius.all(const Radius.circular(15)),
                           ),
                           color: Colors.blue,
                           elevation: 10,
-                          onPressed: (){},
-                          child: Text(
-                              "Veja mais"
-                          ),
-
+                          onPressed: () {},
+                          child: Text("Veja mais"),
                         ),
                       ),
                     ],
@@ -277,6 +245,113 @@ class _TelaInicialState extends State<TelaInicial> {
                 ),
               ),
             ],
+          ),
+          new Container(
+            padding: EdgeInsets.only(
+              top: 8,
+            ),
+            width: 400,
+            height: 35,
+            decoration: BoxDecoration(
+              color: Colors.white24,
+              borderRadius: new BorderRadius.all(const Radius.circular(20)),
+            ),
+            margin: EdgeInsets.only(top: 8),
+            child: Text(
+              "SEJA NOSSO PARCEIRO",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          new SizedBox(
+            height: 8,
+          ),
+          ListView(shrinkWrap: true, children: <Widget>[
+            new ZPerfilItem(
+              numeroQuadrados: 3,
+              listaTextos: [
+                "Seja nosso Revendedor BellSol",
+
+                "Seja nosso Entregador e Instalador BellSol",
+
+                "Clientes Especiais BellSol",
+              ],
+              listaIcones: [
+                Icons.wallet_travel_outlined,
+                Icons.car_rental,
+                Icons.account_circle_outlined,
+              ],
+              listaOnTap: [
+                () {},
+                () {},
+                () {},
+              ],
+              color: Colors.blue,
+            ),
+          ]),
+
+          SizedBox(
+            height: 8,
+          ),
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Image.asset(
+                "Assets/SeloVerde.png",
+                height: 90,
+                width: 165,
+              ),
+              new Column(
+                children: [
+                  new Text(
+                    "CERTIFICADO",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  new Text(
+                    "Empresa Credenciada à \n Certificar  outras Empresas \n com Selo Verde",
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              )
+            ],
+          ),
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Image.asset(
+                "Assets/LOGOBELLSOL.png",
+                height: 90,
+              ),
+              new Column(
+                children: [
+                  new Text(
+                    "CERTIFICADO",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  new Text(
+                    "Empresa com Geração \n de Energia Própria",
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              )
+            ],
+          ),
+          new Container(
+            margin: EdgeInsets.only(top: 16),
+            child: Image.asset(
+              "Assets/CopyRight.png",
+              height: 100,
+            ),
           ),
         ]),
       ),
@@ -286,7 +361,6 @@ class _TelaInicialState extends State<TelaInicial> {
   Widget buildIndicator() => AnimatedSmoothIndicator(
         activeIndex: activeIndex,
         count: listImages.length,
-
       );
 
   Widget buildImage(String urlImage, int index) => new Container(

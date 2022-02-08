@@ -15,6 +15,8 @@ class TelaOrcamento extends StatefulWidget {
 }
 
 class _TelaOrcamentoState extends State<TelaOrcamento> {
+  Map<String, dynamic> formData;
+  String  estadoSelecionado;
   TextEditingController nomeController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController telefoneController = TextEditingController();
@@ -30,11 +32,15 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
   }
 
   Widget _buildBody() {
-    GlobalKey<FormState> formkey = GlobalKey<FormState>();
-    var statesSelected = TextEditingController();
-    var tipoConexaoSelected = TextEditingController();
-    var tipoClienteSelected = TextEditingController();
-    var tipoConcessionariaSelected = TextEditingController();
+    TextEditingController statesSelected = TextEditingController();
+    TextEditingController tipoConexaoSelected = TextEditingController();
+    TextEditingController tipoClienteSelected = TextEditingController();
+    TextEditingController tipoConcessionariaSelected = TextEditingController();
+
+    formData = {
+      'Cidade': 'São Paulo',
+
+    };
 
     List<String> listaEstados = [
       "Acre(AC)",
@@ -220,24 +226,25 @@ class _TelaOrcamentoState extends State<TelaOrcamento> {
                     size: 18,
                   ),
                 ),
-                strict: true,
+                strict: false,
                 controller: statesSelected,
                 hintText: "São Paulo",
                 enabled: true,
                 labelText: "Estado:",
+                required: true,
+
                 labelStyle: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
                 itemsVisibleInDropdown: 8,
                 items: listaEstados,
-                onValueChanged: (value) {
-                  setState(() {
-                    statesSelected = value;
-                  });
-                },
+                  value: formData['City'],
+                  setter: (dynamic newValue) {
+                    formData['City'] = newValue;
+                  }),
               ),
-            ),
+
             new SizedBox(
               height: 8,
             ),
