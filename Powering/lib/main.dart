@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:powering/presenter/initial-screen.dart';
+import 'package:powering/presenter/base-screen.dart';
+import 'package:powering/presenter/map-screen.dart';
 import 'package:powering/utils/location_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -19,14 +20,14 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(
               create: (context) => LocationProvider(),
-               child:InitialScreen(),
+               child:MapScreen(),
           )
         ],
       child: MaterialApp(
         title:"Powering",
         debugShowCheckedModeBanner: false,
         theme: Theme.of(context),//CustomTheme.appTheme.copyWith(accentColor: Colors.white),
-        home:  InitialScreen(),
+        home:  BaseScreen(),
       ),
     );
   }

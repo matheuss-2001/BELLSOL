@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong/latlong.dart';
-import 'package:powering/presenter/initial-screen.dart';
+import 'package:powering/presenter/map-screen.dart';
 import 'package:z_components/i-view.dart';
 
 class InitialScreenView extends IView<InitialScreen> {
